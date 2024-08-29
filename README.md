@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mini Order Status Tracker
 
-## Getting Started
+## Objective
 
-First, run the development server:
+Minimal Order fect API PoC.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Backend**: Express.js, Prisma, PostgreSQL, eslint, mocha and chai
+- **Frontend**: Next.js, React, Tailwind CSS, shadcn components, shadcdn datatable built on top of Tanstack table
+- **Database**: PostgresDB with supabase
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+- **Backend**:
+  - API Endpoint: `GET api/orders` to fetch a list of orders from a PostgreSQL database using Prisma.
+  - Paginated queries `GET api/orders?page=1&size=2` to handle large datasets efficiently.
+  - **Database trigger** for order reference generation.
+  - Organized into routes, controllers and services.
+  - Configured **ESLint** for code quality.
+  - Tests written using *Mocha*.
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend**:
+  - Displays a list of orders in a *Datatable* built with TanStack Table
+  - Built with Next.js for server-side rendering (SSR) and routing.
+  - Uses **Tailwind** CSS for styling.
+  - Integrates shadcn components for UI enhancements.
+  - Prefetching data with SSR and supports URL-based refresh.
+  - Ability to search through data.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+- Node.js
+- PostgreSQL
+- Prisma CLI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo.git
+   cd your-repo
+
+2. Install the packages:
+   ```bash
+   npm install
+
+3. Set Up your env. I have db env variables since it is a requirement of supabase.
+   ```bash
+    PORT=4000
+    
+    DATABASE_URL=postgresql://[user]:[password]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?pgbouncer=true
+
+    DIRECT_URL=postgresql://[user]:[password]@aws-0-eu-central-1.pooler.supabase.com:5432/postgres
+
+4. Generate. Will work a new or my current database.
+   ```bash
+   npx prisma migrate dev
+
+5. Generate. Will work a new or my current database.
+   ```bash
+   npx prisma migrate dev
+
+
+6. Seed data. My db is already seeded with 10K records. Feel free to add.Will work on any db
+   
+      ```bash
+   npm run seed
+
+
+7. run in dev or build mode
+   
+      ```bash
+   npm run dev
+   npm run start
+
+
+8. Testing and liniting
+   
+      ```bash
+   npm run test
+   npm run lint
+
+
+
+### Frontend Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo.git
+   cd your-repo
+
+2. Install the packages:
+   ```bash
+   npm install
+
+3. Set Up your env.local I have db env variables since it is a requirement of supabase.
+   ```bash
+    API_URL=http://127.0.0.1:4000
+
+
+4. run in dev
+   
+      ```bash
+   npm run dev
+
+
